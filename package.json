@@ -2,9 +2,10 @@
   "name": "patina",
   "version": "0.0.1",
   "description": "Pattern library generator",
-  "main": "index.js",
+  "main": "app/app.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node app/app.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
   "homepage": "https://github.com/andymantell/patina",
   "devDependencies": {
     "express": "^4.13.3",
-    "should": "^7.1.1"
+    "should": "^7.1.1",
+    "supertest": "^1.1.0"
   }
 }
