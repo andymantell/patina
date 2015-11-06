@@ -7,7 +7,7 @@ describe('A basic component', function() {
 
   it('should have a demo rendered at /components/basic-component', function(done) {
     request(app)
-      .get('/basic-component')
+      .get('/components/basic-component')
       .expect('Content-Type', /text\/html/)
       .expect(200, done);
   });
@@ -16,7 +16,7 @@ describe('A basic component', function() {
     request(app)
       .get('/')
       .expect(function(res) {
-        res.text.should.containEql('<a href="/components/basic-component">A basic component</a>');
+        res.text.should.containEql('<a href="/components/basic-component">basic-component</a>');
       })
       .end(done);
   });

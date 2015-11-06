@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+
+    <h2>Components</h2>
+    {{#with components}}
+      <ul>
+        {{#each this}}
+          <li>
+            <a href="{{href}}">{{name}}</a>
+          </li>
+        {{/each}}
+      </ul>
+    {{/with}}
+
+    <h2>Pages</h2>
+    {{#with pages}}
+      <ul>
+        {{#each this}}
+          <li>
+            <a href="{{href}}">{{name}}</a>
+          </li>
+        {{/each}}
+      </ul>
+    {{/with}}
+
+  </body>
+</html>
