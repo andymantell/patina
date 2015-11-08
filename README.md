@@ -12,6 +12,6 @@ Pattern library generator.
 * SASS
 * More tests
 * Refactor core. Currently this represents a proof of concept but needs some serious tidying up.
-* ~Rendering component documentation~
-* ~Frontmatter support~
-* ~Ability to define full pages which are constructed out of the various components~
+* ~~Rendering component documentation~~
+* ~~Frontmatter support~~
+* ~~Ability to define full pages which are constructed out of the various components~~
