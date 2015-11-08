@@ -7,7 +7,6 @@ Pattern library generator.
 
 ## TODO:
 
-* Categorised index page
 * Configuration options (Currently hardcoded to only render out the example fixture)
 * Refactor core. Currently this represents a proof of concept but needs some serious tidying up.
 * Use TravisCI to render out the example site fixture to an Amazon S3 bucket so that people can see a demo
@@ -22,6 +21,7 @@ Pattern library generator.
 * Built in validation for
   * HTML
   * JavaScript (JSHint and JSCS)
+* ~~Categorised index page~~
 * ~~Rendering component documentation~~
 * ~~Frontmatter support~~
 * ~~Ability to define full pages which are constructed out of the various components~~

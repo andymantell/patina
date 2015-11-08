@@ -58,8 +58,11 @@ glob('test/fixtures/example-site/src/pages/**/component.yaml', function (er, fil
   files.forEach(function(filename) {
     var name = 'page/' + path.dirname(path.relative('test/fixtures/example-site/src/pages', filename));
 
+    var pageHTML = fs.readFileSync(path.join(path.dirname(filename), 'template.hbs'), 'utf8');
+    var pageFrontmatter = yfm(pageHTML).context;
+
     pages.push({
-      name: name, // @TODO: Pull name from component.yaml
+      name: pageFrontmatter.title ? pageFrontmatter.title : name,
       href: '/' + name
     });
   });
