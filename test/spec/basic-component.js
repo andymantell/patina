@@ -26,12 +26,7 @@ describe('A basic component', function() {
   });
 
   it('should have documentation rendered on the component page', function(done) {
-    request(app)
-      .get('/')
-      .expect(function(res) {
-        res.text.should.containEql('<a href="/components/basic-component/basic-demo">basic-component: basic-demo</a>');
-      })
-      .end(done);
+    (1).should.equal(2);
   });
 
 });
