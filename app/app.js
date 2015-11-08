@@ -62,8 +62,6 @@ glob('test/fixtures/example-site/src/pages/**/component.yaml', function (er, fil
       name: name, // @TODO: Pull name from component.yaml
       href: '/' + name
     });
-
-    hbs.registerPartial(name, fs.readFileSync(path.join(path.dirname(filename), 'template.hbs'), 'utf8'));
   });
 });
 
@@ -125,8 +123,11 @@ app.get('/components/:component/:variant', function(req, res){
 });
 
 app.get('/page/:page', function(req, res){
+  var page = fs.readFileSync(path.join('test/fixtures/example-site/src/pages', req.params.page, 'template.hbs'), 'utf8');
+  var pageData = yfm(page);
+
   res.send(hbs.compile(hbs.partials['layout/main'])({
-    body: hbs.compile(hbs.partials[req.params.page])
+    body: hbs.compile(pageData.content)(pageData.context)
   }));
 });
 

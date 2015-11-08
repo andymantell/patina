@@ -1,3 +1,14 @@
-This is an example page.<br>
-It has a basic component in it<br>
-{{> basic-component }}
+---
+title: Trivial component variant
+basic-component-frontmatter-test:
+  text: This is a basic component rendered with frontmatter from a custom page
+---
+{{#markdown}}
+  This is a custom page with a component in it. This would be used to build up full page designs using the components defined in the components folder.
+  Frontmatter can be defined in these pages to render components out with custom data on a per page basis
+  The markdown helper can be used to _write_ **markdown**
+{{/markdown}}
+
+{{#with basic-component-frontmatter-test}}
+  {{> basic-component }}
+{{/with}}
