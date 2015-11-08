@@ -1,0 +1,14 @@
+---
+title: Multi
+basic-component-frontmatter-test:
+  -
+    text: This is a test
+  -
+    text: This is a longer piece of text
+  -
+    text: Use frontmatter in demos to construct different variants of a component
+---
+
+{{#each basic-component-frontmatter-test}}
+  {{> basic-component}}
+{{/each}}
