@@ -1,1 +1,5 @@
 name: A basic component
+categories:
+  primary: Primary category
+  secondary: Secondary category
+

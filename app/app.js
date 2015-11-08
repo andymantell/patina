@@ -5,6 +5,7 @@ var glob = require('glob');
 var path = require('path');
 var fs = require('fs');
 var yfm = require('yfm');
+var yaml = require('js-yaml');
 
 var hbs = handlebars.create();
 
@@ -26,16 +27,27 @@ glob('test/fixtures/example-site/src/components/**/component.yaml', function (er
 
     hbs.registerPartial(name, fs.readFileSync(path.join(path.dirname(filename), 'template.hbs'), 'utf8'));
 
-    var readme = fs.readFileSync(path.join(path.dirname(filename), 'README.md'), 'utf8');
+    components[name] = yaml.safeLoad(fs.readFileSync(filename, 'utf8'));
+
+    var readmePath = path.join(path.dirname(filename), 'README.md');
+    if(fs.existsSync(readmePath)) {
+      components[name].readme = fs.readFileSync(readmePath, 'utf8');
+    }
+
+    components[name].variants = [];
 
     // Register component demo variants
     glob(path.join(path.dirname(filename), 'demos/*.hbs'), function(er, files) {
       files.forEach(function(demoFilename) {
-        components[name] = {
-          name: name + ': ' + path.basename(demoFilename, path.extname(demoFilename)), // @TODO: Pull name from component.yaml
-          href: '/components/' + name + '/' + path.basename(demoFilename, path.extname(demoFilename)),
-          readme: readme
-        };
+
+        var variantHTML = fs.readFileSync(demoFilename, 'utf8');
+        var variantFrontmatter = yfm(variantHTML).context;
+
+        var variantName = path.basename(demoFilename, path.extname(demoFilename));
+        components[name].variants.push({
+          name: variantFrontmatter.title ? variantFrontmatter.title : variantName,
+          href: '/components/' + name + '/' + variantName
+        });
       });
     });
   });
@@ -63,8 +75,36 @@ glob('test/fixtures/example-site/src/layouts/**/*.hbs', function (er, files) {
 });
 
 app.get('/', function(req, res) {
+
+  // Sort the components by category
+  var sortedComponents = {};
+  for(var component in components) {
+
+    var thisComponent = components[component];
+
+    if(components.hasOwnProperty(component)) {
+
+      if(!thisComponent.categories) {
+        thisComponent.categories = {
+          primary: 'Unsorted',
+          secondary: 'Unsorted'
+        };
+      }
+
+      if(!sortedComponents[thisComponent.categories.primary]) {
+        sortedComponents[thisComponent.categories.primary] = {};
+      }
+
+      if(!sortedComponents[thisComponent.categories.primary][thisComponent.categories.secondary]) {
+        sortedComponents[thisComponent.categories.primary][thisComponent.categories.secondary] = [];
+      }
+
+      sortedComponents[thisComponent.categories.primary][thisComponent.categories.secondary].push(thisComponent);
+    }
+  }
+
   res.send(hbs.compile(hbs.partials['layout/index'])({
-    components: components,
+    components: sortedComponents,
     pages: pages
   }));
 });
@@ -76,6 +116,8 @@ app.get('/components/:component/:variant', function(req, res){
 
   // Pass details of all the components to the
   pageData.context.component = components[req.params.component];
+
+  console.log(pageData.context.component);
 
   res.send(hbs.compile(hbs.partials['layout/main'])({
     body: hbs.compile(pageData.content)(pageData.context)
