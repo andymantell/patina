@@ -7,6 +7,7 @@ Pattern library generator.
 
 ## TODO:
 
+* Get html <head> out into a partial
 * Sort out general confusion between name and title in app.js
 * Configuration options (Currently hardcoded to only render out the example fixture)
 * Use TravisCI to render out the example site fixture to an Amazon S3 bucket so that people can see a demo

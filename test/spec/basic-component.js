@@ -1,7 +1,7 @@
 var should = require('should');
 var request = require('supertest')
 
-var app = require('../../app/app');
+var app = require('../../app/app').server;
 
 describe('A basic component', function() {
 

@@ -2,6 +2,3 @@ name: Core
 categories:
   primary: Core
   secondary: Core
-
-dependencies:
-  - core

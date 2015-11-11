@@ -1,7 +1,7 @@
 var should = require('should');
 var request = require('supertest')
 
-var app = require('../../app/app');
+var app = require('../../app/app').server;
 
 describe('The dev server', function() {
   it('should send with a well formed response for the index page', function(done) {

@@ -3,6 +3,7 @@ var yaml = require('js-yaml');
 var glob = require('glob');
 var path = require('path');
 var fs = require('fs');
+var DepGraph = require('dependency-graph').DepGraph;
 
 /**
  * Function to return config and data for a single component
@@ -84,7 +85,46 @@ function getComponents() {
   });
 }
 
+/**
+ * Function to return component config in dependency tree order
+ * Useful for things like sass compilation
+ * @return {Promise} Promise which resolves with all the component data
+ */
+function getComponentsTree() {
+  return new Promise(function(resolve, reject) {
+
+    getComponents()
+      .then(function(components) {
+        var graph = new DepGraph();
+
+        // Initial pass adding the components to the graph
+        // Has to be done first as you can't add dependencies to components that
+        // don't yet exist
+        components.forEach(function(component) {
+          graph.addNode(component.id);
+        });
+
+        // Add dependencies
+        components.forEach(function(component) {
+          if(component.dependencies) {
+            component.dependencies.forEach(function(dependency) {
+              graph.addDependency(component.id, dependency);
+            })
+          }
+        });
+
+        resolve(graph.overallOrder());
+      })
+      .catch(function(e) {
+        reject(e);
+      });
+  });
+}
+
 module.exports = {
   getComponent: getComponent,
-  getComponents: getComponents
+  getComponents: getComponents,
+  getComponentsTree: getComponentsTree
 };
+
+
