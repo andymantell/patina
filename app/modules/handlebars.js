@@ -68,7 +68,9 @@ function registerComponents(hbs) {
       .then(function(components) {
 
         components.forEach(function(component) {
-          hbs.registerPartial(component.id, component.template);
+          if(component.template) {
+            hbs.registerPartial(component.id, component.template);
+          }
         });
 
         resolve(hbs);

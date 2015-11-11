@@ -3,3 +3,5 @@ categories:
   primary: Primary category
   secondary: Secondary category
 
+dependencies:
+  - trivial-component

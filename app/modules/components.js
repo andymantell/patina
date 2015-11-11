@@ -18,7 +18,13 @@ function getComponent(name) {
 
     component.id = name;
 
-    component.template = fs.readFileSync(path.join(componentPath, 'template.hbs'), 'utf8');
+    // Not all components have templates. If they don't, we can just bail out here
+    if(fs.existsSync(path.join(componentPath, 'template.hbs'))) {
+      component.template = fs.readFileSync(path.join(componentPath, 'template.hbs'), 'utf8');
+    } else {
+      resolve(component);
+      return;
+    }
 
     var readmePath = path.join(componentPath, 'README.md');
     if(fs.existsSync(readmePath)) {

@@ -1,7 +1,7 @@
-name: Trivial component
+name: Core
 categories:
   primary: Core
-  secondary: Typography
+  secondary: Core
 
 dependencies:
   - core

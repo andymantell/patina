@@ -22,6 +22,10 @@ app.get('/', function(req, res) {
       var sortedComponents = {};
       unsortedComponents.forEach(function(component) {
 
+        // If the component doesn't define a template, don't bother rendering it
+        if(!component.template) {
+          return;
+        }
 
         if(!component.categories) {
           component.categories = {
