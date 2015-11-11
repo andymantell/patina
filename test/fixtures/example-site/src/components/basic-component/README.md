@@ -5,3 +5,5 @@ It is readable in a text editor, rendered in most repository browsers (e.g. Gith
 * Here
 * Is
 * **Some** _markdown_
+
+This _markdown_ **string** is here for the test suite
