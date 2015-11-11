@@ -31,7 +31,13 @@ describe('A basic component', function() {
   });
 
   it('should have documentation rendered on the component page', function(done) {
-    (1).should.equal(2);
+    request(app)
+      .get('/components/basic-component/basic-demo')
+      .expect(function(res) {
+        res.text.should.containEql('This is the README.md file for this basic component.');
+      })
+      .end(done);
+
   });
 
 });
