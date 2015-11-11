@@ -115,10 +115,9 @@ app.get('/components/:component/:variant', function(req, res){
   var page = fs.readFileSync(path.join('test/fixtures/example-site/src/components', req.params.component,  'demos', req.params.variant + '.hbs'), 'utf8');
   var pageData = yfm(page);
 
+
   // Pass details of all the components to the
   pageData.context.component = components[req.params.component];
-
-  console.log(pageData.context.component);
 
   res.send(hbs.compile(hbs.partials['layout/main'])({
     body: hbs.compile(pageData.content)(pageData.context)

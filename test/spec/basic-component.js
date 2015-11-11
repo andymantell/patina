@@ -5,6 +5,11 @@ var app = require('../../app/app');
 
 describe('A basic component', function() {
 
+  // TODO: Remove this. This a hideous hack to get around the intial asynchronous work that is done upon launching the server.
+  before(function(done) {
+    setTimeout(done, 1000);
+  });
+
   it('should have a demo rendered at /components/basic-component/basic-demo', function(done) {
     request(app)
       .get('/components/basic-component/basic-demo')
@@ -20,7 +25,7 @@ describe('A basic component', function() {
     request(app)
       .get('/')
       .expect(function(res) {
-        res.text.should.containEql('<a href="/components/basic-component/basic-demo">basic-component: basic-demo</a>');
+        res.text.should.containEql('<a href="/components/basic-component/basic-demo">Basic</a>');
       })
       .end(done);
   });
