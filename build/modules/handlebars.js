@@ -21,9 +21,9 @@ function init() {
  */
 function registerCoreHelpers(hbs) {
   return new Promise(function(resolve, reject) {
-    glob('app/handlebars/helpers/**/*.js', function(er, files) {
+    glob('build/handlebars/helpers/**/*.js', function(er, files) {
       files.forEach(function(filename) {
-        var helper = require(path.resolve(process.cwd(), filename));
+        var helper = require(path.relative(__dirname, filename));
         hbs.registerHelper(path.basename(filename, path.extname(filename)), helper(hbs));
       });
 
@@ -43,7 +43,9 @@ function registerCoreHelpers(hbs) {
  */
 function registerLayouts(hbs) {
   return new Promise(function(resolve, reject) {
-    glob('test/fixtures/example-site/src/layouts/**/*.hbs', function (er, files) {
+
+    // Register custom layouts that will inherit from the above
+    glob('src/layouts/**/*.hbs', function (er, files) {
       files.forEach(function(filename) {
         hbs.registerPartial('layout/' + path.basename(filename, path.extname(filename)), fs.readFileSync(filename, 'utf8'));
       });

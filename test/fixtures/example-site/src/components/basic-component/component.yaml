@@ -4,4 +4,4 @@ categories:
   secondary: Secondary category
 
 dependencies:
-  - trivial-component
+  - components/trivial-component

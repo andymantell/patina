@@ -4,4 +4,4 @@ categories:
   secondary: Typography
 
 dependencies:
-  - core
+  - components/core

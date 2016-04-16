@@ -2,10 +2,16 @@
   "name": "patina",
   "version": "0.0.1",
   "description": "Pattern library generator",
-  "main": "app/app.js",
+  "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "start": "node app/app.js"
+    "test": "npm run build && npm run generateTestURLs && mocha && npm run eslint",
+    "eslint": "eslint ** --ignore-pattern node_modules ",
+    "generateTestURLs": "node build/tasks/testURLs.js",
+    "build": "node build/doBuild.js",
+    "build-prod": "node build/doBuildProd.js",
+    "start": "node build/devServer.js",
+    "dev": "supervisor -i test,dist,.tmp,node_modules -e js,scss,hogan,yaml build/devServer.js",
+    "generateReferenceRenderings": "npm run build && node build/tasks/generateReferenceRenderings.js"
   },
   "repository": {
     "type": "git",
@@ -16,8 +22,7 @@
     "library",
     "styleguide",
     "style",
-    "guide",
-    "pattern"
+    "guide"
   ],
   "author": "Andy Mantell <contact@andymantell.com> (http://andymantell.com/)",
   "license": "MIT",
@@ -30,16 +35,24 @@
     "supertest": "^1.1.0"
   },
   "dependencies": {
+    "autoprefixer": "^6.3.6",
+    "browserify": "^13.0.0",
     "dependency-graph": "^0.4.1",
     "express": "^4.13.3",
     "extend": "^3.0.0",
     "glob": "^5.0.15",
     "handlebars": "^4.0.4",
+    "hoganify": "^0.2.0",
     "js-yaml": "^3.4.3",
     "markdown": "^0.5.0",
     "mkdirp": "^0.5.1",
+    "ncp": "^2.0.0",
     "node-sass": "^3.4.1",
+    "pkg-up": "^1.0.0",
+    "postcss": "^5.0.19",
     "promise-helpers": "^0.2.0",
+    "trim-character": "^2.0.1",
+    "uglifyify": "^3.0.1",
     "yfm": "^0.2.0"
   }
 }

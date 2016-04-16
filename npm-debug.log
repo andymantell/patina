@@ -1,0 +1,48 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/andymantell/.nvm/versions/node/v5.10.1/bin/node',
+1 verbose cli   '/home/andymantell/.nvm/versions/node/v5.10.1/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'build' ]
+2 info using npm@3.8.3
+3 info using node@v5.10.1
+4 verbose run-script [ 'prebuild', 'build', 'postbuild' ]
+5 info lifecycle patina@0.0.1~prebuild: patina@0.0.1
+6 silly lifecycle patina@0.0.1~prebuild: no script for prebuild, continuing
+7 info lifecycle patina@0.0.1~build: patina@0.0.1
+8 verbose lifecycle patina@0.0.1~build: unsafe-perm in lifecycle true
+9 verbose lifecycle patina@0.0.1~build: PATH: /home/andymantell/.nvm/versions/node/v5.10.1/lib/node_modules/npm/bin/node-gyp-bin:/home/andymantell/Work/andymantell/patina/node_modules/.bin:/home/andymantell/.nvm/versions/node/v5.10.1/bin:/home/andymantell/.nvm/versions/node/v5.10.1/lib/node_modules/npm/bin/node-gyp-bin:/home/andymantell/Work/andymantell/patina/node_modules/.bin:/home/andymantell/.nvm/versions/node/v5.10.1/bin:/home/andymantell/.nvm/versions/node/v5.10.1/bin:/usr/local/heroku/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/andymantell/.rvm/bin:/home/andymantell/.rvm/bin
+10 verbose lifecycle patina@0.0.1~build: CWD: /home/andymantell/Work/andymantell/patina
+11 silly lifecycle patina@0.0.1~build: Args: [ '-c', 'node build/doBuild.js' ]
+12 silly lifecycle patina@0.0.1~build: Returned: code: 1  signal: null
+13 info lifecycle patina@0.0.1~build: Failed to exec build script
+14 verbose stack Error: patina@0.0.1 build: `node build/doBuild.js`
+14 verbose stack Exit status 1
+14 verbose stack     at EventEmitter.<anonymous> (/home/andymantell/.nvm/versions/node/v5.10.1/lib/node_modules/npm/lib/utils/lifecycle.js:239:16)
+14 verbose stack     at emitTwo (events.js:100:13)
+14 verbose stack     at EventEmitter.emit (events.js:185:7)
+14 verbose stack     at ChildProcess.<anonymous> (/home/andymantell/.nvm/versions/node/v5.10.1/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+14 verbose stack     at emitTwo (events.js:100:13)
+14 verbose stack     at ChildProcess.emit (events.js:185:7)
+14 verbose stack     at maybeClose (internal/child_process.js:850:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:215:5)
+15 verbose pkgid patina@0.0.1
+16 verbose cwd /home/andymantell/Work/andymantell/patina
+17 error Linux 4.2.0-35-generic
+18 error argv "/home/andymantell/.nvm/versions/node/v5.10.1/bin/node" "/home/andymantell/.nvm/versions/node/v5.10.1/bin/npm" "run" "build"
+19 error node v5.10.1
+20 error npm  v3.8.3
+21 error code ELIFECYCLE
+22 error patina@0.0.1 build: `node build/doBuild.js`
+22 error Exit status 1
+23 error Failed at the patina@0.0.1 build script 'node build/doBuild.js'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the patina package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     node build/doBuild.js
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs patina
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls patina
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]
